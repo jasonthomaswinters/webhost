@@ -31,21 +31,40 @@ p {
 
 
 </style>
-<form action="/done.html" method="get">
+<form id="form" method="GET" action="done.html">
 <div class="container">
   <div class="center">
-    <p>How do<br>you feel today?</p>
+    
+    
+	<p>How do<br>you feel today?</p>
 	<p style="color: orange;"><span id="echo">normal</span></p>
-	<p><input type="range" min="1" max="5" step="1" class="slider" id="feels" ></p>
-	<p><button type="submit" >SUBMIT</button></p>
+	<p><input type="range" min="1" max="5" step="1" class="slider" id="feels" name="ans"></p>
+	<p><button type="submit">SUBMIT</button></p>
+	<input type="hidden" name="id" id="androidId" value="">
+	
   </div>
 </div>
 </form>
 
 <script>
+
+function getParam(key){
+	var sPageURL = window.location.search.substring(1);
+	var sParts = sPageURL.split('&');
+	for (var i = 0; i < sParts.length; i++){
+		var sKey = sParts[i].split('=');
+		if(sKey[0] == key){
+			return sKey[1];
+		}
+	}
+	return '';
+	
+}
+
+
 var slider = document.getElementById("feels");
 var output = document.getElementById("echo");
-//output.innerHTML = slider.value;
+document.getElementById("androidId").value = getParam('id');
 
 slider.oninput = function() {
 
@@ -70,8 +89,7 @@ slider.oninput = function() {
   case "5":
 	output.innerHTML = "great";
 	break;
-  
-		
+  	
   }
   
   
