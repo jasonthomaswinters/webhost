@@ -3,12 +3,12 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
-<body style="background-color:black;">
+<body style="background-color:black; overflow-y:hidden;">
 <style>
 .container {
   height: 300px;
   position: relative;
-  border: 3px solid #73AD21;
+  border: 0px solid #73AD21;
 }
 
 .center {
@@ -16,7 +16,7 @@
 }
 
 button {
-	font-size: 20px;
+	font-size: 18px;
 	border-radius: 40px;
 	width: 50%;
 }
@@ -26,19 +26,57 @@ p {
 	color: white;
 	text-align: center;
 	font-family: Arial, sans-serif;
-  font-size: 20px;
+  font-size: 18px;
 }
-</style>
 
+
+</style>
+<form action="/done.html" method="get">
 <div class="container">
   <div class="center">
-	<br>
-    <p>How do you feel today?</p>
-	<p><span id="echo">okay</span></p>
+    <p>How do<br>you feel today?</p>
+	<p style="color: orange;"><span id="echo">normal</span></p>
 	<p><input type="range" min="1" max="5" step="1" class="slider" id="feels" ></p>
-	<p><button ype="submit">SUBMIT</button></p>
+	<p><button type="submit" >SUBMIT</button></p>
   </div>
 </div>
+</form>
+
+<script>
+var slider = document.getElementById("feels");
+var output = document.getElementById("echo");
+//output.innerHTML = slider.value;
+
+slider.oninput = function() {
+
+  switch(this.value){
+  
+  case "1":
+	output.innerHTML = "bad";
+	break;
+	
+  case "2":
+	output.innerHTML = "worse than normal";
+	break;
+	
+  case "3":
+	output.innerHTML = "normal";
+	break;
+	
+  case "4":
+	output.innerHTML = "better than nornal";
+	break;
+	
+  case "5":
+	output.innerHTML = "great";
+	break;
+  
+		
+  }
+  
+  
+}
+</script>
 
 </body>
 </html>
